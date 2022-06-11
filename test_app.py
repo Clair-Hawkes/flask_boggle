@@ -70,11 +70,13 @@ class BoggleAppTestCase(TestCase):
             game_id = game_info['gameId']
     
             game = games[game_id]
-            game.board =    [['A', 'T', 'A', 'C', 'R'],
-                            ['N', 'A', 'R', 'W', 'U'],
-                            ['L', 'I', 'H', 'I', 'T'],
-                            ['K', 'S', 'E', 'R', 'E'],
-                            ['E', 'R', 'E', 'E', 'A']]
+            game.board =    [
+                ['A', 'T', 'A', 'C', 'R'],
+                ['N', 'A', 'R', 'W', 'U'],
+                ['L', 'I', 'H', 'I', 'T'],
+                ['K', 'S', 'E', 'R', 'E'],
+                ['E', 'R', 'E', 'E', 'A']
+            ]
             games[game_id] = game
     
             ##Test for valid word
@@ -82,7 +84,7 @@ class BoggleAppTestCase(TestCase):
             response_validate_word = client.post(
                 "/api/score-word", 
                 json={'game_id':game_id, 'word': word},
-                )       
+            )       
             answer_from_api = response_validate_word.get_json()
             result = answer_from_api['result']
             self.assertEqual(result,'ok')
@@ -92,7 +94,7 @@ class BoggleAppTestCase(TestCase):
             response_validate_word = client.post(
                 "/api/score-word", 
                 json={'game_id':game_id, 'word': word},
-                )       
+            )       
             answer_from_api = response_validate_word.get_json()
             result = answer_from_api['result']
             self.assertEqual(result,'not-word')
@@ -102,7 +104,7 @@ class BoggleAppTestCase(TestCase):
             response_validate_word = client.post(
                 "/api/score-word", 
                 json={'game_id':game_id, 'word': word},
-                )       
+            )       
             answer_from_api = response_validate_word.get_json()
             result = answer_from_api['result']
             self.assertEqual(result,'not-on-board')

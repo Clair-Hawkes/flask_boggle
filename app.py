@@ -43,13 +43,15 @@ def validate_word():
 
     If all methods resolve true: {result: "ok"}
     """
-
-    game_id = request.json.get('game_id')
-    word = request.json.get('word')
+    
+    game_id = request.json['game_id']
+    word = request.json['word']
     game = games[game_id]
 
-    if not game.is_word_not_a_dup(word):
-        return jsonify({"result": "word-dup"})
+    #Not sure we need to include this in this function or if it will be
+    #in a different place in the future
+    #if not game.is_word_not_a_dup(word):
+    #    return jsonify({"result": "word-dup"})
 
     if not game.is_word_in_word_list(word):
         return jsonify({"result": "not-word"})
