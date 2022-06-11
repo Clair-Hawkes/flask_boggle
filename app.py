@@ -29,7 +29,7 @@ def new_game():
     return jsonify({"gameId": game_id, "board": game.board})
 
 @app.post('/api/score-word')
-def score_word():
+def validate_word():
     """View Function score_word:
     Is called via ajax in the browser.
     The body of the request should include game_id, word
